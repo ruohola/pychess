@@ -1,7 +1,7 @@
 # pychess
 
 This is a full featured chess game for iOS, developed entirely on an iPhone X
-using the [Pythonista app](http://omz-software.com/pythonista/),
+using the [Pythonista app](https://apps.apple.com/app/pythonista-3/id1085978097),
 which enables doing Python development on iOS.
 I developed this game during a two week period on a vacation in Chile.
 The game can only be run at the moment through the Pythonista app,
