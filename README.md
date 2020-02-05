@@ -29,7 +29,7 @@ Things that were done outside of iOS:
 #### How to run the project:
 - The text based game, `main_tui.py` and the unit tests in `tests.py` can be run anywhere with Python
   with no external dependencies.
-- The iOS GUI game `main_gui.py` can be run by installing Pythonista on an iOS device
+- The iOS GUI game `main.py` can be run by installing Pythonista on an iOS device
   and importing the project files to it.
  
 #### In-game screenshots
