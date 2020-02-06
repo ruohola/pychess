@@ -121,39 +121,39 @@ class Main(scene.Scene):
         except InvalidMoveError:
             pass
 
-    def select_promotion(self, touch: scene.Touch) -> None:
-        option = self.square_from_touch(touch, self.promote_menu.options)
-        if not option:
-            return
-        
-        self.player.promote(option.piece_name)
+    def select_promotion(self, node: SquareShape) -> None:
+        self.player.promote(node.piece_name)
         self.player = self.game.next_player()
 
         del self.promote_menu
         self.promote_menu = None
         self.render_pieces()
 
-    def square_from_touch(self, touch: scene.Touch,
-                          iterator: Iterator[scene.Node]) -> Optional[SquareShape]:
+    def node_from_touch(self, touch: scene.Touch,
+                        nodes: Iterator[scene.Node]) -> Optional[scene.Node]:
 
         pos = self.root.point_from_scene(touch.location)
-        for square in iterator:
-            if square.frame.contains_point(pos):
-                return square
+        for node in nodes:
+            if node.frame.contains_point(pos):
+                return node
 
     # Override
     def touch_ended(self, touch: scene.Touch) -> None:
-        if touch.location.x < 48 and touch.location.y > self.size.h - 48:
-            self.show_resume_menu()
+        nodes = self.squares
+        if self.promote_menu:
+            nodes += self.promote_menu.options
+        node = self.node_from_touch(touch, nodes)
+
+        if not node:
+            # Didnt' touch any board square or the promotion options,
+            # so we'll just show the continue menu.
+            self.show_continue_menu()
             return
             
         if self.player.promotion:
-            return self.select_promotion(touch)
+            return self.select_promotion(node)
 
-        square = self.square_from_touch(touch, self.squares)
-        if not square:
-            return
-        pos = square.coord
+        pos = node.coord
 
         if self.game.color_of_piece(pos) == self.player.color:
             if self.fr == pos:
@@ -170,7 +170,7 @@ class Main(scene.Scene):
             else:
                 self.render_pieces()
                 if self.player.promotion:
-                    self.promote_menu = PromoteMenu(self, self.player.promotion, square)
+                    self.promote_menu = PromoteMenu(self, self.player.promotion, node)
                 else:
                     self.player = self.game.next_player()
     
