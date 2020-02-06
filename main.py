@@ -65,6 +65,8 @@ class Main(scene.Scene):
         
         self.info_white = InfoBox(self.root, self.game.white)
         self.info_black = InfoBox(self.root, self.game.black)
+        self.info_white.update_clock()
+        self.info_black.update_clock()
 
         for square in self.game.iter_squares():
             self.squares.append(SquareShape(self.root, square))
@@ -196,8 +198,10 @@ class Main(scene.Scene):
     # Override
     def update(self) -> None:
         try:
-            self.info_white.update_clock()
-            self.info_black.update_clock()
+            if self.player == self.info_white.player:
+                self.info_white.update_clock()
+            else:
+                self.info_black.update_clock()
         except AttributeError:
             # The info boxes were not created yet.
             pass

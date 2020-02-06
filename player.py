@@ -1,7 +1,7 @@
 import collections
 import time
 from functools import wraps
-from typing import Counter, Iterator, List, Optional
+from typing import Counter, Iterator, List, Optional, Any
 
 from bishop import Bishop
 from board import Board
@@ -53,6 +53,11 @@ class Player:
         if self.time_control:
             self._time_left: Optional[float] = self.time_control.time
         self._running: bool = False
+
+    def __eq__(self, other: Any) -> bool:
+        if not isinstance(other, self.__class__):
+            return NotImplemented
+        return self.color == other.color
         
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}({self.color}, {self._board!r})"
