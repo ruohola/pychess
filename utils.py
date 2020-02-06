@@ -1,6 +1,10 @@
 from typing import Tuple
 
 
+class InvalidMoveError(Exception):
+    pass
+
+
 def coord_to_idx(coord: str) -> Tuple[int, int]:
     file, rank = coord
     x = ord(file) - 97

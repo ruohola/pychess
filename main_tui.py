@@ -1,6 +1,6 @@
 """The text based/TUI version of the chess game."""
 
-from exceptions import InvalidMoveError
+from utils import InvalidMoveError
 from game import Game
 
 

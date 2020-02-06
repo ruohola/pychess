@@ -6,7 +6,7 @@ from typing import Counter, Iterator, List, Optional
 from bishop import Bishop
 from board import Board
 from color import Color
-from exceptions import InvalidMoveError
+from utils import InvalidMoveError
 from king import King
 from knight import Knight
 from move import Move

@@ -3,7 +3,7 @@ from typing import Iterator, Optional
 
 from board import Board
 from color import Color
-from exceptions import InvalidMoveError
+from utils import InvalidMoveError
 from player import Player
 from square import Square
 from time_control import TimeControl

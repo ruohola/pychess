@@ -10,7 +10,7 @@ from typing import Iterator, List, Optional
 import scene
 
 import game
-from exceptions import InvalidMoveError
+from utils import InvalidMoveError
 from gui_components import SquareShape, PieceSprite, SelectedShape, MoveShape, InfoBox, PromoteMenu
 from gui_pause_menu import ContinueMenu, ResumeMenu
 from player import Player

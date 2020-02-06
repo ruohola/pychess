@@ -58,12 +58,33 @@ class _Menu(scene.Scene):
             node.texture = scene.Texture("pzl:Button1")
 
             if touch_loc in node.frame:
+                '''  
+                if node.title == "Options":
+                    self.present_modal_scene(OptionsMenu())
+                    break
+                '''
                 if self.presenting_scene:
                     self.presenting_scene.menu_button_selected(node.title)
-        
+
+
+'''
+class OptionsMenu(_Menu):
+    def __init__(self) -> None:
+        fields = []
+        for i in range(3):
+            fields.append(
+                ui.TextField()
+            )
+        super().__init__(fields)
+'''
+
 
 class _PauseMenu(_Menu):
     def __init__(self, button_titles: List[str]) -> None:
+        '''
+        button_titles.append("Options")
+        '''
+
         buttons = []
         for i, title in enumerate(reversed(button_titles)):
             buttons.append(_ButtonNode(title))

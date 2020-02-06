@@ -7,14 +7,13 @@ from functools import wraps
 from bishop import Bishop
 from board import Board
 from color import Color
-from exceptions import InvalidMoveError
 from game import Game
 from king import King
 from knight import Knight
 from pawn import Pawn
 from queen import Queen
 from rook import Rook
-from utils import coord_to_idx, idx_to_coord
+from utils import coord_to_idx, idx_to_coord, InvalidMoveError
 
 
 def log(func):
