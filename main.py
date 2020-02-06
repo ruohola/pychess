@@ -79,18 +79,14 @@ class Main(scene.Scene):
             pass
     
     def load_save(self) -> None:
-        with open(SAVE_FILE, "rb") as f:
-            loaded = pickle.load(f)
-        self.delete_save()
+        try:
+            with open(SAVE_FILE, "rb") as f:
+                loaded = pickle.load(f)
+                os.remove(SAVE_FILE)
+        except FileNotFoundError:
+            loaded = None
         self.new_game(loaded=loaded)
 
-    @staticmethod
-    def delete_save() -> None:
-        try:
-            os.remove(SAVE_FILE)
-        except FileNotFoundError:
-            pass
-        
     def render_pieces(self) -> None:
         self.clear_allowed_moves()
         for piece in self.pieces:
