@@ -165,8 +165,8 @@ class InfoBox:
         self.player: Player = player
         self.nodes: List[scene.Node] = []
         self.y_offset: int = HEIGHT//2 - 4.5*SQUARE_SIZE
-        self.font: Tuple[str, int] = ("Menlo", SQUARE_SIZE//2)
-        self.color: str = "white"
+        self.text_font: Tuple[str, int] = ("Menlo", SQUARE_SIZE // 2)
+        self.text_color: str = "white"
         
         if self.player.color == Color.WHITE:
             pos_value = (0, self.y_offset)
@@ -178,18 +178,18 @@ class InfoBox:
         self.value_label: scene.LabelNode = scene.LabelNode(
             text="",
             parent=self.parent,
-            font=self.font,
+            font=self.text_font,
             position=pos_value,
             anchor_point=(0, 0.5),
-            color=self.color,
+            color=self.text_color,
         )
         self.clock_label: scene.LabelNode = scene.LabelNode(
             text="",
             parent=self.parent,
-            font=self.font,
+            font=self.text_font,
             position=pos_clock,
             anchor_point=(1, 0.5),
-            color=self.color,
+            color=self.text_color,
         )
         
         if self.player.color == Color.BLACK:
@@ -214,9 +214,9 @@ class InfoBox:
             y_offset = self.y_offset - SQUARE_SIZE//2 if i >= per_row else self.y_offset
                 
             if self.player.color == Color.WHITE:
-                pos = ((i % per_row)*SQUARE_SIZE//2 + self.font[1]*2.3, y_offset)
+                pos = ((i % per_row) * SQUARE_SIZE // 2 + self.text_font[1] * 2.3, y_offset)
             else:
-                pos = (WIDTH - (i % per_row)*SQUARE_SIZE//2 - self.font[1]*2.3, HEIGHT - y_offset)
+                pos = (WIDTH - (i % per_row) * SQUARE_SIZE // 2 - self.text_font[1] * 2.3, HEIGHT - y_offset)
                 
             # Black menu is flipped 180 degrees.
             size = (SQUARE_SIZE/2 * self.player.color.value,) * 2
