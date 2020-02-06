@@ -190,7 +190,8 @@ class Main(scene.Scene):
         elif title == "Resume Game":
             self.load_save()
         elif title == "Continue":
-            self.player.start_clock()
+            if self.game.started:
+                self.player.start_clock()
 
     # Override
     def update(self) -> None:

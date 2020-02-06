@@ -19,11 +19,15 @@ class Game:
         
         self._players: Iterator[Player] = cycle((self.white, self.black))
         self.current_player: Player = next(self._players)
+
+        self.started = False
         
     def __str__(self) -> str:
         return str(self._board)
     
-    def next_player(self) -> Player:        
+    def next_player(self) -> Player:
+        self.started = True
+
         if self.current_player.promotion:
             # Promotion should be handled before the next turn can start.
             raise InvalidMoveError
