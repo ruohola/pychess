@@ -2,14 +2,14 @@
 Modified from Pythonista's Examples/Games/game_menu.py
 """
 
-from typing import List
+from typing import List, Any
 
 import scene
 import ui
 
 
 class _ButtonNode(scene.SpriteNode):
-    def __init__(self, title: str, *args, **kwargs) -> None:
+    def __init__(self, title: str, *args: Any, **kwargs: Any) -> None:
         super().__init__("pzl:Button1", *args, **kwargs)
         button_font = ("Menlo", 25)
         self.title_label = scene.LabelNode(title, font=button_font, color="black", position=(0, 1), parent=self)

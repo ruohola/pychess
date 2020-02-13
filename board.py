@@ -1,5 +1,5 @@
 import itertools
-from typing import Dict
+from typing import Dict, Optional
 
 from bishop import Bishop
 from color import Color
@@ -82,6 +82,6 @@ class Board:
         rv += file_labels
         return rv
 
-    def _get(self, x: int, y: int) -> Square:
+    def _get(self, x: int, y: int) -> Optional[Square]:
         coord = idx_to_coord(x, y)
         return self._squares.get(coord)
