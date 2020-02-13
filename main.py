@@ -124,6 +124,9 @@ class Main(scene.Scene):
             pass
 
     def select_promotion(self, node: SquareShape) -> None:
+        if node not in self.promote_menu.options:
+            return
+
         self.player.promote(node.piece_name)
         self.player = self.game.next_player()
 
